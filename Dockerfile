@@ -1,4 +1,4 @@
-FROM runpod/pytorch:latest
+FROM runpod/pytorch:2.4.0-py3.11-cuda12.4.1-devel-ubuntu22.04
 
 # Install micromamba
 RUN curl -L https://micro.mamba.pm/api/micromamba/linux-64/latest \
