@@ -18,8 +18,11 @@ WORKDIR /opt/build
 COPY requirements.core.txt /opt/build/requirements.core.txt
 COPY requirements.extra.txt /opt/build/requirements.extra.txt
 
+# Configure micromamba channels (so 'python' can be solved)
+RUN printf "channels:\n  - conda-forge\nchannel_priority: strict\n" > /root/.condarc
+
 # Create env
-RUN micromamba create -y -n spar_env python=3.11
+RUN micromamba create -y -n spar_env -c conda-forge python=3.11
 
 # Upgrade pip tooling
 RUN micromamba run -n spar_env python -m pip install -U pip setuptools wheel
