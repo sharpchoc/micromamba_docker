@@ -18,8 +18,7 @@ WORKDIR /opt/build
 COPY requirements.core.txt /opt/build/requirements.core.txt
 COPY requirements.extra.txt /opt/build/requirements.extra.txt
 
-# Configure micromamba channels (so 'python' can be solved)
-RUN printf "channels:\n  - conda-forge\nchannel_priority: strict\n" > /root/.condarc
+RUN mkdir -p /etc/conda && printf "channels:\n  - conda-forge\nchannel_priority: strict\n" > /etc/conda/.condarc
 
 # Create env
 RUN micromamba create -y -n spar_env -c conda-forge python=3.11
